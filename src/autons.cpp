@@ -814,7 +814,7 @@ void odom_testing(){
   
 }
 
-void match_aution(){
+void match_auton(){
   // y = -50, x = 18, theta = 90
   chassis.drive_imu_reset();
   chassis.pid_targets_reset();

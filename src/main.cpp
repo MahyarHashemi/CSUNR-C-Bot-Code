@@ -61,6 +61,7 @@ void initialize() {
 
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
+      {"We making and matching now", match_auton},
       {"Trying to figure it all out", odom_testing},
       {"Good lord", testing_park_and_clear},
       {"New run for Charity Volunteering", charity_new_run},
@@ -262,9 +263,9 @@ void opcontrol() {
 
     // . . .
     // Put more user control code here!
-    intake_control();
-    outtake_control();
-    pneumatic_control();
+    // intake_control();
+    // outtake_control();
+    // pneumatic_control();
     // . . .
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Drive Eileen",
+    "project_name": "Robot Eileen",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -425,8 +425,8 @@
     },
     "upload_options": {
       "description": "Come on Eileen",
-      "icon": "pizza",
-      "slot": 4
+      "icon": "planet",
+      "slot": 6
     },
     "use_early_access": false
   }
