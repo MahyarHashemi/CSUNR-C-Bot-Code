@@ -814,4 +814,55 @@ void odom_testing(){
   
 }
 
+void match_aution(){
+  // y = -50, x = 18, theta = 90
+  chassis.drive_imu_reset();
+  chassis.pid_targets_reset();
+  chassis.drive_sensor_reset();
+  chassis.odom_reset();
+  chassis.odom_xyt_set(18_in, -50_in, 90_deg);
+
+  chassis.pid_drive_set(36_in, DRIVE_SPEED);
+  chassis.pid_wait_quick();
+
+  chassis.pid_turn_set(180_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  rake_open();
+  ball_close();
+  intake_speed(127);
+  outtake_speed(127);
+
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(24_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  pros::delay(1000);
+
+  chassis.pid_drive_set(-10_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  rake_close();
+  intake_speed(0);
+  outtake_speed(0);
+
+  chassis.pid_turn_set(0_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(15_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+  ball_open();
+  pros::delay(500);
+  intake_speed(127);
+  outtake_speed(127);
+  pros::delay(3000);
+  
+  chassis.pid_drive_set(-10_in, DRIVE_SPEED);
+  chassis.pid_wait();
+
+}
+
 // . . .
