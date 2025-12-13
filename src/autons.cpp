@@ -8,6 +8,22 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
+// //Mahyar Variables (Mainly for PID as of rn)
+// double c_mass = 7.39;
+// //Drive Constants
+// double kp_drive = 20.0; double kd_drive = 2 * sqrt(c_mass * kp_drive);
+// //Heading Constants
+// double kp_heading = 11.0; double kd_heading = 2 * sqrt(c_mass * kp_heading);
+// //Turn Constants
+// double kp_turn = 3.0; double kd_turn = 2 * sqrt(c_mass * kp_turn);
+// //Swing Constants
+// double kp_swing = 6.5; double kd_swing = 2 * sqrt(c_mass * kp_swing);
+// //Odom Constants
+// double kp_odom = 6.5; double kd_odom = 2 * sqrt(c_mass * kp_odom);
+// //Boomerang Constants
+// double kp_boom = 5.8; double kd_boom = 2 * sqrt(c_mass * kp_boom);
+
+
 // These are out of 127
 const int DRIVE_SPEED = 110;
 const int TURN_SPEED = 90;
@@ -24,6 +40,12 @@ void default_constants() {
   chassis.pid_swing_constants_set(6.0, 0.0, 65.0);           // Swing constants
   chassis.pid_odom_angular_constants_set(6.5, 0.0, 52.5);    // Angular control for odom motions
   chassis.pid_odom_boomerang_constants_set(5.8, 0.0, 32.5);  // Angular control for boomerang motions
+  // chassis.pid_drive_constants_set(kp_drive, 0.0, kd_drive);         // Fwd/rev constants, used for odom and non odom motions
+  // chassis.pid_heading_constants_set(kp_heading, 0.0, kd_heading);        // Holds the robot straight while going forward without odom
+  // chassis.pid_turn_constants_set(kp_turn, 0.05, kd_turn, 15.0);     // Turn in place constants
+  // chassis.pid_swing_constants_set(kp_swing, 0.0, kd_swing);           // Swing constants
+  // chassis.pid_odom_angular_constants_set(kp_odom, 0.0, kd_odom);    // Angular control for odom motions
+  // chassis.pid_odom_boomerang_constants_set(kp_boom, 0.0, kd_boom);  // Angular control for boomerang motions
 
   // Exit conditions
   chassis.pid_turn_exit_condition_set(90_ms, 3_deg, 250_ms, 7_deg, 500_ms, 500_ms);
@@ -903,9 +925,15 @@ void match_auton(){
   chassis.pid_drive_set(2_in, DRIVE_SPEED);
   chassis.pid_wait();
 
-  pros::delay(3000);
+  // chassis.pid_drive_set(-2_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
+  // chassis.pid_drive_set(3_in, DRIVE_SPEED, false);
+  // chassis.pid_wait();
 
-  chassis.pid_drive_set(-10_in, DRIVE_SPEED);
+  //was 3000
+  pros::delay(1500);
+
+  chassis.pid_drive_set(-10_in, 75);
   chassis.pid_wait();
 
   rake_close();
@@ -913,7 +941,7 @@ void match_auton(){
   // intake_speed(0);
   // outtake_speed(0);
 
-  chassis.pid_turn_set(2.5_deg, 60);
+  chassis.pid_turn_set(4.5_deg, 60);
   chassis.pid_wait();
 
   intake_speed(-127);
