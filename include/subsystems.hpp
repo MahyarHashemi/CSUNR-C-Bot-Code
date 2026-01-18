@@ -17,5 +17,7 @@ inline ez::Piston angle_changer('B');
 
 inline ez::Piston ball_stop('C');
 
+inline ez::Piston descore('D');
+
 // inline pros::Motor intake(1);
 // inline pros::adi::DigitalIn limit_switch('A');

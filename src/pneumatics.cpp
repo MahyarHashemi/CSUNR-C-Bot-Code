@@ -4,6 +4,7 @@
 extern bool rake_state = false;
 extern bool angle_state = false;
 extern bool ball_state = true;
+extern bool descore_state = false;
 
 ////////////////////Pneumatics Auton///////////////////////
 
@@ -30,6 +31,13 @@ void ball_close(){
     ball_stop.set(true);
 }
 
+void descore_open(){
+    descore.set(true);
+}
+void descore_close(){
+    descore.set(false);
+}
+
 //////////////////////Pneumatic Control/////////////////
 void pneumatic_control(){
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
@@ -40,6 +48,13 @@ void pneumatic_control(){
     }
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
         ball_state = !ball_state;
+    }
+    
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_B)){
+        descore_state = true;
+    }
+    else{
+        descore_state = false;
     }
 
     if (rake_state){
@@ -61,6 +76,13 @@ void pneumatic_control(){
     }
     else{
         ball_stop.set(false);
+    }
+
+    if (descore_state){
+        descore.set(true);
+    }
+    else{
+        descore.set(false);
     }
     
     // if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)){
