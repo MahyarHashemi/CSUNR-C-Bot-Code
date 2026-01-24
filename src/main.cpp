@@ -3,6 +3,8 @@
 #include "EZ-Template/outtake.hpp"
 #include "EZ-Template/pneumatics.hpp"
 
+int angle_changer_count = 0;
+
 /////
 // For installation, upgrading, documentations, and tutorials, check out our website!
 // https://ez-robotics.github.io/EZ-Template/
@@ -266,6 +268,14 @@ void opcontrol() {
     intake_control();
     outtake_control();
     pneumatic_control();
+
+    if (angle_changer_count == 0){
+      angle_state = true;
+      angle_changer_count = 1;
+    }
+    else if (angle_state == false){
+      angle_state = true;
+    }
     // . . .
 
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

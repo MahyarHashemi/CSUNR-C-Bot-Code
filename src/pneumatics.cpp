@@ -40,10 +40,10 @@ void descore_close(){
 
 //////////////////////Pneumatic Control/////////////////
 void pneumatic_control(){
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
         angle_state = !angle_state;
     }
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
         rake_state = !rake_state;
     }
     // if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L1)){
