@@ -850,7 +850,10 @@ void match_auton(){
   // chassis.pid_turn_set(180_deg, TURN_SPEED);
   // chassis.pid_wait();
 
-  chassis.pid_odom_ptp_set({{47_in, -50_in, 90_deg}, fwd, 65}, true);
+  // chassis.pid_odom_ptp_set({{47_in, -50_in, 90_deg}, fwd, 65}, true);
+  // chassis.pid_wait();
+
+  chassis.pid_odom_ptp_set({{45.5_in, -50_in, 90_deg}, fwd, 65}, true);
   chassis.pid_wait();
 
   chassis.pid_turn_set(180_deg, 60);
@@ -908,6 +911,9 @@ void match_auton(){
   outtake_speed(127);
   pros::delay(1000);
 
+  chassis.pid_drive_set(-2.5_in, 60, false);
+  chassis.pid_wait();
+
   chassis.pid_turn_set(180_deg, 60);
   chassis.pid_wait();
 
@@ -941,7 +947,9 @@ void match_auton(){
   // intake_speed(0);
   // outtake_speed(0);
 
-  chassis.pid_turn_set(4.5_deg, 60);
+  // chassis.pid_turn_set(4.5_deg, 60);
+  // chassis.pid_wait();
+  chassis.pid_turn_set(3_deg, 60);
   chassis.pid_wait();
 
   intake_speed(-127);
