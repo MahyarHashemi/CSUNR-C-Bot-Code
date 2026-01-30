@@ -40,9 +40,9 @@ void descore_close(){
 
 //////////////////////Pneumatic Control/////////////////
 void pneumatic_control(){
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
-        angle_state = !angle_state;
-    }
+    // if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_L2)){
+    //     angle_state = !angle_state;
+    // }
     if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_DOWN)){
         rake_state = !rake_state;
     }
@@ -62,12 +62,12 @@ void pneumatic_control(){
     else{
         ball_state = true;
     }
-    // if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
-    //     angle_state = true;
-    // }
-    // else{
-    //     angle_state = false;
-    // }
+    if (master.get_digital(pros::E_CONTROLLER_DIGITAL_L2)){
+        angle_state = true;
+    }
+    else{
+        angle_state = false;
+    }
 
     if (rake_state){
         rake.set(true);
