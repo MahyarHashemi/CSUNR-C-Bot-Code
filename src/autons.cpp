@@ -853,7 +853,7 @@ void match_auton(){
   // chassis.pid_odom_ptp_set({{47_in, -50_in, 90_deg}, fwd, 65}, true);
   // chassis.pid_wait();
 
-  chassis.pid_odom_ptp_set({{45.5_in, -50_in, 90_deg}, fwd, 65}, true);
+  chassis.pid_odom_ptp_set({{47.5_in, -50_in, 90_deg}, fwd, 65}, true);
   chassis.pid_wait();
 
   chassis.pid_turn_set(180_deg, 60);
@@ -886,10 +886,18 @@ void match_auton(){
   chassis.pid_drive_set(14_in, DRIVE_SPEED);
   chassis.pid_wait();
 
+  intake_speed(0);
+  outtake_speed(0);
+
   chassis.pid_drive_set(-1.75_in, 60);
+  intake_speed(-127);
+  outtake_speed(-127);
   chassis.pid_wait();
 
+
   ball_open();
+  intake_speed(127);
+  outtake_speed(127);
   // pros::delay(500);
   // intake_speed(127);
   // outtake_speed(127);
@@ -911,8 +919,8 @@ void match_auton(){
   outtake_speed(127);
   pros::delay(1000);
 
-  chassis.pid_drive_set(-2.5_in, 60, false);
-  chassis.pid_wait();
+  // chassis.pid_drive_set(-2.5_in, 60, false);
+  // chassis.pid_wait();
 
   chassis.pid_turn_set(180_deg, 60);
   chassis.pid_wait();
@@ -962,6 +970,8 @@ void match_auton(){
   chassis.pid_wait();
 
   chassis.pid_drive_set(-1.5_in, 60);
+  intake_speed(-127);
+  outtake_speed(-127);
   chassis.pid_wait();
 
   ball_open();
