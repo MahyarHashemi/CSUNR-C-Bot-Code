@@ -712,8 +712,9 @@ void odom_testing(){
   chassis.pid_odom_smooth_pp_set({{{0_in, -30_in, 180_deg}, rev, DRIVE_SPEED}}, true);
   chassis.pid_wait();
 
+  //Was 65_in on X for second index
   chassis.pid_odom_smooth_pp_set({{{36_in, -50_in, 90_deg}, fwd, 80},
-                                  {{65_in, -50_in, 90_deg}, fwd, 65}}, true);
+                                  {{60_in, -50_in, 90_deg}, fwd, 65}}, true);
   chassis.pid_wait_until_index_started(1);
 
   //Bring rake up to allow for better manueverability
@@ -721,10 +722,17 @@ void odom_testing(){
   rake_close();
   chassis.pid_wait();
 
+  ////////////////////////////////////////////
+  chassis.pid_drive_set(5_in, DRIVE_SPEED);
+  chassis.pid_wait();
+  ////////////////////////////////////////////
+
+  chassis.odom_xyt_set(65_in, -50_in, 90_deg);
+
   pros::delay(500);
 
-  chassis.pid_odom_smooth_pp_set({{{50_in, -48_in, 90_deg}, rev, DRIVE_SPEED},
-                                  {{50_in, -35_in, 0_deg}, fwd, 70}}, true);
+  chassis.pid_odom_smooth_pp_set({{{52.5_in, -48_in, 90_deg}, rev, DRIVE_SPEED},
+                                  {{52.5_in, -35_in, 0_deg}, fwd, 70}}, true);
   chassis.pid_wait_until_index_started(1);
   angle_open();
   chassis.pid_wait();
